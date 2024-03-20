@@ -39,17 +39,13 @@ public:
         return { min(interval1[0], interval2[0]), max(interval1[1], interval2[1]) };
     }
 
-    bool are_overlapping(vector<int> interval1, vector<int> interval2)
+    bool are_overlapping(vector<int>& interval1, vector<int>& interval2)
     {
         if (interval1[0] < interval2[0])//interval are in same order
         {
             if (interval1[1] - interval2[0] < 0)// no overlap
             {
                 return 0;
-            }
-            else// is overlap
-            {
-                return 1;
             }
         }
         else if (interval1[0] > interval2[0]) //interval in reverse order
@@ -58,11 +54,8 @@ public:
             {
                 return 0;
             }
-            else// is overlap
-            {
-                return 1;
-            }
         }
+        
         return 1;//overlap anyway
     }
 };
