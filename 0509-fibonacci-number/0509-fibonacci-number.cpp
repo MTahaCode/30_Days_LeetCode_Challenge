@@ -2,20 +2,26 @@ class Solution {
 public:
     int fib(int n) {
         
-        map<int, int> fibNumbers;
+        int first = 1;
+        int second = 1;
 
-        for (int i = 1; i <= n; i++)
+        if ( n <= 0)
         {
-            if (i == 1 || i == 2)
-            {
-                fibNumbers[i] = 1;
-            }
-            else
-            {
-                fibNumbers[i] = fibNumbers[i - 1] + fibNumbers[i - 2];
-            }
-        }   
-        return fibNumbers[n];
+            return 0;
+        }
+        else if (n == 1)
+        {
+            return first;
+        }
+
+        for (int i = 3; i <= n; i++)
+        {
+            int temp = first + second;
+            first = second;
+            second = temp;
+            cout << first << " " << second;
+        }
+        return second;
         
     }
 };
