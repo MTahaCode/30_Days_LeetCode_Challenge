@@ -10,32 +10,42 @@
  */
 class Solution {
 public:
+    
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-
-	    return recurRemove(head, n, n);
         
-    }
+        
+        ListNode* aheadNode = head;
 
-    ListNode* recurRemove(ListNode* head, int n, int& counter)
-    {
-        if (!head)
+        ListNode* prevOfLagging = nullptr;
+        ListNode* laggingNode = head;
+
+        for (int i = 0; i < n; i++)
         {
-            return nullptr;
+            aheadNode = aheadNode->next;
         }
 
-        ListNode* NextNode = recurRemove(head->next, n, counter);
-        if (!NextNode || counter < n)
+        while (aheadNode)
         {
-            counter--;
+            aheadNode = aheadNode->next;
+
+            prevOfLagging = laggingNode;
+            laggingNode = laggingNode->next;
         }
 
-        if (counter == 0)
+        ListNode* temp = laggingNode->next;
+        delete laggingNode;
+        
+        
+        if (prevOfLagging)
         {
-            delete head;
-            return NextNode;
+            
+            prevOfLagging->next = temp;
+        }
+        else
+        {
+            head = temp;
         }
 
-        head->next = NextNode;
         return head;
     }
 };
