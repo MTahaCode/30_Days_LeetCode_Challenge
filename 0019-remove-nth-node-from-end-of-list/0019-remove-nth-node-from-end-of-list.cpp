@@ -31,7 +31,7 @@ public:
 
         if (counter == 0)
         {
-            //delete head;
+            delete head;
             return NextNode;
         }
 
