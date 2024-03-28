@@ -15,10 +15,10 @@ public:
         
         if (!root) return nullptr;
         
-        swap(root->left, root->right);
+        invertTree(root->left);
+        invertTree(root->right);
         
-        root->left = invertTree(root->left);
-        root->right = invertTree(root->right);
+        swap(root->left, root->right);
         
         return root;
         
