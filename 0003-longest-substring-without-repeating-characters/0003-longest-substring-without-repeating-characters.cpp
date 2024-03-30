@@ -2,24 +2,34 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         
-        string Final = "";
+        int MaxSize = 0;
 
-        for (int i = 0; i < s.length(); i++)
+        int i = 0;
+        int j = 0;
+
+        unordered_map<char, int> charMap;
+
+        while (j < s.length())
         {
-            string temp = "";
-            for (int index = i; index < s.length(); index++)
+            //add to char map
+            charMap[s[j]]++;
+
+            if (charMap.size() == j - i + 1)
             {
-                if (temp.find(s[index]) != string::npos)
+                MaxSize = max(MaxSize, j - i + 1);
+            }
+
+            while (charMap.size() < j - i + 1)
+            {
+                charMap[s[i]]--;
+                if (charMap[s[i]] == 0)
                 {
-                    break;
+                    charMap.erase(s[i]);
                 }
-                temp += s[index];
+                i++;
             }
-            if (Final.length() < temp.length())
-            {
-                Final = temp;
-            }
+            j++;
         }
-        return Final.length();
+        return MaxSize;
     }
 };
