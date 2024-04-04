@@ -32,8 +32,8 @@ public:
             return false;
         }
         
-        return (left->val == right->val) 
-            && isRecurrSymmetric(left->left, right->right) 
-            && isRecurrSymmetric(left->right, right->left);
+        return (left->val == right->val) && 
+            isRecurrSymmetric(left->left, right->right) && 
+            isRecurrSymmetric(left->right, right->left);
     }
 };
