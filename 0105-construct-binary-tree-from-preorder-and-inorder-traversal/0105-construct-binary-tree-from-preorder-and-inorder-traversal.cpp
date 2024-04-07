@@ -14,35 +14,34 @@ public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         
         int preIndex = 0;
-        return recurBuildTree(preorder, inorder, preIndex, 0, inorder.size() - 1);
+        
+        map<int, int> inorderMap;
+        for (int i = 0; i < inorder.size(); i++)
+        {
+            inorderMap[inorder[i]] = i;
+        }
+        
+        return recurBuildTree(preorder, inorderMap, preIndex, 0, inorder.size() - 1);
         
     }
     
     TreeNode* recurBuildTree(
         vector<int>& preorder,
-        vector<int>& inorder,
+        map<int, int>& inorderMap,
         int& preIndex,
         int start,
         int end)
     {
-        if (preIndex > preorder.size() || start > end)
+        if (start > end)
         {
             return nullptr;
         }
 
-        int rootIndex = start;
-        for (int index = start; index <= end; index++)
-        {
-            if (inorder[index] == preorder[preIndex])
-            {
-                rootIndex = index;
-                break;
-            }
-        }
+        int rootIndex = inorderMap[preorder[preIndex]];
 
         TreeNode* curr = new TreeNode(preorder[preIndex++]);
-        curr->left = recurBuildTree(preorder, inorder, preIndex, start, rootIndex - 1);
-        curr->right = recurBuildTree(preorder, inorder, preIndex, rootIndex + 1, end);
+        curr->left = recurBuildTree(preorder, inorderMap, preIndex, start, rootIndex - 1);
+        curr->right = recurBuildTree(preorder, inorderMap, preIndex, rootIndex + 1, end);
 
         return curr;
     }
