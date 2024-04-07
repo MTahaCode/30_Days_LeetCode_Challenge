@@ -18,11 +18,7 @@ public:
     
     TreeNode* recurrSortedArrayToBST(vector<int>& nums, int start, int end)
     {
-        if (start == end)
-        {
-            return new TreeNode(nums[start]);
-        }
-        else if (start > end)
+        if (start > end)
         {
             return nullptr;
         }
