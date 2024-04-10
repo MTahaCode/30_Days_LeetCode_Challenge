@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         
-        map<int, int> ranking;
+        unordered_map<int, int> ranking;
 
         for (int num : nums) {
             ranking[num]++;
@@ -11,7 +11,7 @@ public:
         vector<pair<int, int>> numWithOccurance(ranking.begin(), ranking.end());
 
         std::sort(numWithOccurance.begin(), numWithOccurance.end(), 
-            [](pair<int, int>& a, pair<int, int>& b) {
+            [](const pair<int, int>& a, const pair<int, int>& b) {
                 return a.second > b.second;
             });
 
