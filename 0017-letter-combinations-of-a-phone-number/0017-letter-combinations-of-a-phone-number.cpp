@@ -21,7 +21,7 @@ public:
         
     }
     
-    void getCombination(string digits, 
+    void getCombination(string& digits, 
         int index, vector<string>& combinations, 
         unordered_map<char, string>& digit_letters, 
         string comb = "") {
