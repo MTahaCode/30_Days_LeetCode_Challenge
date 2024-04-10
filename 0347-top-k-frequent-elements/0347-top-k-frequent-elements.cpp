@@ -8,10 +8,7 @@ public:
             ranking[num]++;
         }
 
-        vector<pair<int, int>> numWithOccurance;
-        for (std::pair<int, int> num : ranking) {
-            numWithOccurance.push_back(num);
-        }
+        vector<pair<int, int>> numWithOccurance(ranking.begin(), ranking.end());
 
         std::sort(numWithOccurance.begin(), numWithOccurance.end(), 
             [](pair<int, int>& a, pair<int, int>& b) {
